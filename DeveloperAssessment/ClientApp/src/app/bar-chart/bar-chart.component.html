@@ -1,0 +1,80 @@
+<!--The main container of the stuff of interest-->
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side">
+    <div class="commands text-right">
+      <button type="button"
+              (click)="getAll()"
+              class="btn btn-success">
+          Get the Lastest Data
+      </button>
+    </div>
+    <mat-radio-group
+      class="w-25 mat-radio-button"
+      [(ngModel)]="whereFilter">
+      <mat-radio-button *ngFor="let dat of barData" [value]="dat" (click)="select(dat.name)">
+        {{dat.name}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <button type="button"
+              (click)="removeFilter()"
+              class="btn btn-danger">
+          Clear Filters
+      </button>
+  </mat-drawer>
+
+  <div>
+    <button class="btn btn-info" (click)="drawer.toggle()">
+      Menu
+    </button>
+    
+  </div>
+
+<br>
+<!-- Chart Div -->
+<div id="chart"></div>
+<br>
+<p *ngIf="!tableData"><em>Loading...</em></p>
+<table mat-table [dataSource]="tableData" class="mat-elevation-z8" [hidden]="!tableData">
+
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td class="w-25" mat-cell *matCellDef="let dat">{{dat.id}}</td>
+  </ng-container>
+
+  <!-- Section Name Column -->
+  <ng-container matColumnDef="section">
+    <th mat-header-cell *matHeaderCellDef>Section Name</th>
+    <td class="w-50" mat-cell *matCellDef="let dat">{{dat.section}}</td>
+  </ng-container>
+
+  <!-- Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td class="w-75" mat-cell *matCellDef="let dat"> {{dat.title}} </td>
+  </ng-container>
+
+   <!-- Link Column -->
+   <ng-container matColumnDef="link">
+    <th mat-header-cell *matHeaderCellDef>Link</th>
+    <td class="w-75" mat-cell *matCellDef="let dat"> 
+      <a href="{{dat.link}}" mat-button>
+        <mat-icon svgIcon="link"></mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+﻿
+<!-- Pagination directive -->
+<mat-paginator [hidden]="!tableData"
+    (page)="getData($event)"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 50]"
+    showFirstLastButtons></mat-paginator>
+
+    
+  <!-- close drawer -->
+  </mat-drawer-container>

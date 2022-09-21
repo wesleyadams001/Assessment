@@ -1,0 +1,34 @@
+<h1>An assessment</h1>
+<p>Welcome to my example SPA, built with:</p>
+<ul>
+  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
+  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
+  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+  <li><a href='https://material.angular.io/'>Angular Material</a> Material Design components for Angular</li>
+</ul>
+<p>This leverages .net 6 as well as the following:</p>
+<ul>
+  <li><strong>"Autofac" Version="6.4.0"</strong></li>
+  <li><strong>"Autofac.Extensions.DependencyInjection" Version="8.0.0"</strong></li>
+  <li><strong>"Microsoft.AspNetCore.SpaProxy" Version="6.0.6"</strong></li>
+  <li><strong>"Microsoft.Data.Sqlite.Core" Version="6.0.9"</strong></li>
+  <li><strong>"Microsoft.EntityFrameworkCore" Version="6.0.9"</strong></li>
+  <li><strong>"Microsoft.EntityFrameworkCore.Design" Version="6.0.9"></strong></li>
+  <li><strong>"Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.9"</strong></li>
+  <li><strong>"Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9"</strong></li>
+  <li><strong>"Newtonsoft.Json" Version="13.0.1"</strong></li>
+  <li><strong>"System.Linq.Dynamic.Core" Version="1.2.20"</strong></li>
+</ul>
+<p>I used the standard dotnet tool commands to create the sqlite database as follows:</p>
+<ul>
+  <li><strong>"dotnet ef migrations add InitialCreate"</strong>Creating and initializing the migrations</li>
+  <li><strong>"dotnet ef database update"</strong>Creating the database, tables, and applying migrations</li>
+  <li><strong>"dotnet ef database drop"</strong>(if necessary for dubugging) dropping the database</li>
+  <li><strong>"dotnet ef migrations remove"</strong>(if necessary for debugging) removing migrations</li>
+</ul>
+<p>Overall I liked the experience of running the exercise. If I were to expand it, I would probably break my bar-chart componet into two separate componets. One pertaining to the 
+  data grid and one pertaining to the chart then added together into the mat-drawer. I would probably add some additional endpoints for flexibility. Then I would start looking at
+  how best to make the code more extensible. I did not get around to enabling sorting but might be nice. In this case I would probably start with an IRequester interface (via Autofac just my usual DI tool) to make REST api calls to endpoints in the case that we wanted to expand 
+  on our design and make dlls for more apis we might be interested in. If this started to expand further past a a couple records might start looking at a higher grade data store (IE sql server) I already
+  started moving in this direction adding SQLServer EF and Autofac from nuget and I will probably continue missing with the project after this interview for fun.
+</p>
