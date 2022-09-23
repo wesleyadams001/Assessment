@@ -46,6 +46,7 @@ namespace DeveloperAssessment.Data
             modelBuilder.Entity<TimesRecord>().Property(m => m.SubSection).IsRequired(false);
             modelBuilder.Entity<TimesRecord>().Property(m => m.Link).IsRequired(false);
             modelBuilder.Entity<TimesRecord>().Property(m => m.Title).IsRequired(false);
+            modelBuilder.Entity<TimesRecord>().Property(m => m.PublishedDate);
         }
 
         /// <summary>

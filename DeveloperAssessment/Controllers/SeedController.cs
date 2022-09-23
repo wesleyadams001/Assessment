@@ -60,11 +60,14 @@ namespace DeveloperAssessment.Controllers
                 {
                     //convert to ienumerable of objects
                     var records = Parser.Parse(dataObjects);
-
+                    var ids = records.Select(n => n.Id).ToHashSet();
+                    
                     if (this._context.Times.Count() > 0)
                     {
-                        //Updates entities
-                        this._context.Times.UpdateRange(records);
+                        var all = this._context.Times.Where(x => x.Id > 0).ToList();
+                        this._context.Times.RemoveRange(all);
+                        this._context.SaveChanges();
+                        this._context.Times.AddRange(records);
                     }
                     else
                     {

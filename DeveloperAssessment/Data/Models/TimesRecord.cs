@@ -52,5 +52,11 @@ namespace DeveloperAssessment.Models
         /// </summary>
         [JsonProperty("subsection")]
         public string? SubSection { get; set; }
+
+        /// <summary>
+        /// The content published date
+        /// </summary>
+        [JsonProperty("published_date")]
+        public DateTime PublishedDate { get; set; }
     }
 }
