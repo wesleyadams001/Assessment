@@ -64,7 +64,7 @@ namespace DeveloperAssessment.Controllers
                     
                     if (this._context.Times.Count() > 0)
                     {
-                        var all = this._context.Times.Where(x => x.Id > 0).ToList();
+                        var all = this._context.Times.ToList();
                         this._context.Times.RemoveRange(all);
                         this._context.SaveChanges();
                         this._context.Times.AddRange(records);
