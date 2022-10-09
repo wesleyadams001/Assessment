@@ -64,10 +64,17 @@ namespace DeveloperAssessment.Controllers
                     
                     if (this._context.Times.Count() > 0)
                     {
+                        //Get items and update the values based on a join of their ids and then projecting the updated sequence
                         var all = this._context.Times.ToList();
-                        this._context.Times.RemoveRange(all);
-                        this._context.SaveChanges();
-                        this._context.Times.AddRange(records);
+                        all = (from val1 in all
+                               join val2 in records
+                               on val1.Id equals val2.Id 
+                               select new TimesRecord() { Id = val1.Id, Link = val2.Link, Name = val2.Name, PublishedDate = val2.PublishedDate, Section = val2.Section, SubSection = val2.SubSection, Title = val2.Title, Views = val2.Views }
+                             ).ToList();
+
+                        //update a range of values using the modified sequence
+                        this._context.UpdateRange(all);
+                        
                     }
                     else
                     {
